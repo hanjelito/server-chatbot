@@ -25,6 +25,7 @@ app.post('/usuario', function(req, res) {
     }
 });
 
+
 app.get('/usuario', function(req, res) {
     console.log(req);
     let body = req.body;

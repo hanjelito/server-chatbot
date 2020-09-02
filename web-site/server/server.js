@@ -11,6 +11,21 @@ app.use(bodyParser.urlencoded({ extends: false }));
 app.use(bodyParser.json());
 //
 
+app.get('/usuario', function(req, res) {
+    let body = req.body;
+    if (body.nombre === undefined) {
+        res.status(400).json({
+            ok: false,
+            mensaje: 'El nombre es necesario'
+        });
+    } else {
+        res.json({
+            body
+        });
+    }
+});
+
+
 app.post('/usuario', function(req, res) {
     console.log(req);
     let body = req.body;
@@ -28,55 +43,16 @@ app.post('/usuario', function(req, res) {
     } else {
         switch (fullQual) {
             case 'AA456':
-                returnString = 'AA456 is 10 minutes ahead of schedule.';
+                returnString = 'AA456 esta 10 minutos antes de lo programado';
                 break;
             case 'AA123':
-                returnString = 'AA123 is on time.';
+                returnString = 'AA123 esta a tiempo.';
                 break;
             case 'DL123':
-                returnString = 'DL123 is on time.';
+                returnString = 'DL123 esta a tiempo.';
                 break;
             case 'UA789':
-                returnString = 'UA789 is 5 minutes behind schedule.';
-                break;
-            default:
-                returnString = '**An error has occured.**';
-        }
-        let finalString = " --> " + returnString + " <-- ";
-        res.json({
-            message: finalString
-        });
-    }
-});
-
-
-app.get('/usuario', function(req, res) {
-    console.log(req);
-    let body = req.body;
-    returnString = '';
-
-    airline = body.airline;
-    flightNum = body.flightNumber;
-    fullQual = airline + flightNum;
-
-    if (body.airline === undefined) {
-        res.status(400).json({
-            ok: false,
-            mensaje: 'Acceso denegado'
-        });
-    } else {
-        switch (fullQual) {
-            case 'AA456':
-                returnString = 'AA456 is 10 minutes ahead of schedule.';
-                break;
-            case 'AA123':
-                returnString = 'AA123 is on time.';
-                break;
-            case 'DL123':
-                returnString = 'DL123 is on time.';
-                break;
-            case 'UA789':
-                returnString = 'UA789 is 5 minutes behind schedule.';
+                returnString = 'UA789 tiene 5 min de retraso.';
                 break;
             default:
                 returnString = '**An error has occured.**';

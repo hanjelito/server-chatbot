@@ -5,7 +5,7 @@ services:
     build: ./web-site
     command: node server/server
     ports:
-      - 3000:3000
+      - 4000:3000
     volumes:
       - ./web-site:/usr/src/app
       - /usr/src/app/node_modules
